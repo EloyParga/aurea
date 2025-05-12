@@ -1,0 +1,198 @@
+:root {
+    --color-primario: #805AA7;      /* Lavanda */
+    --color-secundario: #9D7AC0;    /* Lavanda claro */
+    --color-texto: #000000;         /* Negro */
+    --color-fondo-footer: #1A232D;  /* Azul oscuro */
+    --color-hover-suave: #e6dff1;   /* Hover pastel */
+    --color-blanco: #ffffff;
+    --color-gris-claro: #ccc;
+}
+
+
+
+
+/* Reset básico para márgenes y relleno */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container-fluid{
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    
+}
+
+/* Estilos generales para el cuerpo de la página */
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: black;
+    background-color: var(--color-blanco);
+    margin: 0;
+    padding: 0;
+}
+
+/* Enlaces sin subrayado y color heredado */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+/** NAVBAR **/
+
+/* Estilos de la barra de navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Distribuye espacio entre los elementos */
+    align-items: center;
+    background-color: transparent;
+    padding: 10px 20px;
+}
+
+/* Logo alineado a la izquierda */
+.logo {
+    display: flex;
+    justify-content: flex-start; /* Alinea el logo a la izquierda */
+}
+
+.logo img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Contenedor del menú centrado */
+.menu-center {
+    display: flex;
+    justify-content: center; /* Centra los enlaces dentro de este contenedor */
+    flex-grow: 1; /* Hace que el contenedor ocupe el espacio restante */
+}
+
+.menu-center a {
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 20px;
+    font-size: 16px;
+    color: var(--color-texto); /* Color del texto por defecto */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave para hover */
+}
+
+.menu-center a:hover {
+    background-color: var(--color-primario);
+    color: var(--color-blanco); /* Cambiar el color del texto a blanco */
+    border-radius: 4px;
+}
+
+/* Estilo para los menús derecho (iconos) */
+.menu-right {
+    display: flex;
+    justify-content: flex-end; /* Alinea los iconos a la derecha */
+}
+
+.menu-right a {
+    margin-left: 15px;
+}
+
+.icon img {
+    width: 40px;
+    height: 40px;
+}
+
+/* Estilo del icono del carrito y usuario en hover */
+.menu-right a:hover {
+    opacity: 0.8; /* Efecto sutil de opacidad para los iconos */
+}
+
+
+
+
+
+
+/** FOOTER **/
+
+.site-footer {
+    font-family: 'Roboto', sans-serif;
+    background-color: #1A232D;
+    color: var(--color-blanco);
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+    font-size: 14px;
+}
+
+.footer-column {
+
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+}
+
+.footer-column.footer-left {
+    text-align: left;
+    flex-grow: 1;
+    display:flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.footer-column.footer-left a {
+    margin: 0;
+}
+
+.footer-column.footer-center {
+    flex-grow: 2; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.8;
+}
+
+.footer-column.footer-right {
+    flex-grow: 1;
+    text-align: right;
+}
+
+.footer-column h4 {
+    font-weight: 800;
+    margin-bottom: 10px;
+    font-size: 32px;
+    color: var(--color-secundario); /* color secundario */
+}
+
+.footer-column a {
+    color: #ccc;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-column a:hover {
+    color: var(--color-primario); /* color primario lavanda */
+}
+
+.social-icons a {
+    margin-left: 10px;
+}
+
+.social-icons img {
+    filter: brightness(0) invert(1);
+    transition: transform 0.2s;
+}
+
+.social-icons img:hover {
+    transform: scale(1.1);
+}
+
+.bg-img-header{
+    height: 70px;
+    width: 70px;
+}
+
+
+
+
