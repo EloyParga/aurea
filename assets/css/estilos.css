@@ -18,11 +18,11 @@
     box-sizing: border-box;
 }
 
-.container-fluid{
-    margin: 0;
-    padding-left: 0;
-    padding-right: 0;
-    
+html, body {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
 }
 
 /* Estilos generales para el cuerpo de la página */
@@ -38,6 +38,20 @@ body {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+/** ANIMACION SCROLL **/
+
+.snap-section {
+  height: 100dvh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100dvh;
 }
 
 
