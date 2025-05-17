@@ -41,4 +41,41 @@ function obtenerResenasDestacadas($limite = 3) {
     $stmt->execute();
     return $stmt->get_result();
 }
+
+function obtenerCategorias() {
+    global $conn;
+    $sql = "SELECT id_categoria, nombre, icono_url FROM categorias";
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
+function obtenerProductosCatalogo($categoria = null, $busqueda = null) {
+    global $conn;
+    $sql = "SELECT p.*, c.nombre AS categoria_nombre 
+            FROM productos p 
+            JOIN categorias c ON p.id_categoria = c.id_categoria 
+            WHERE 1";
+
+    if ($categoria) {
+        $sql .= " AND p.id_categoria = " . intval($categoria);
+    }
+    if ($busqueda) {
+        $busqueda = mysqli_real_escape_string($conn, $busqueda);
+        $sql .= " AND (p.nombre LIKE '%$busqueda%' OR p.descripcion LIKE '%$busqueda%')";
+    }
+
+    $sql .= " ORDER BY c.nombre, p.nombre";
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
+function agruparPorCategoria($productos) {
+    $agrupados = [];
+    foreach ($productos as $prod) {
+        $cat = $prod['categoria_nombre'];
+        $agrupados[$cat][] = $prod;
+    }
+    return $agrupados;
+}
+
 ?>
