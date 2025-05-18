@@ -47,20 +47,6 @@ a {
     color: inherit;
 }
 
-/** ANIMACION SCROLL **/
-
-.snap-section {
-  height: 100dvh;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-.snap-container {
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  height: 100dvh;
-}
-
 
 
 /** NAVBAR **/
