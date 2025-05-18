@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/aurea/assets/css/estilos.css">
     <link rel="stylesheet" href="/aurea/assets/css/estilos.css">
 </head>
+
 <body class="snap-container">
     <?php include('partials/navbar.php'); ?>
     
@@ -22,6 +23,37 @@
                 <div>
                     <input type="text" name="" id="">
                     <button></button>
+
+<body style="padding-top: 100px;">
+    <?php include('partials/navbar.php'); ?>
+
+    <?php include('partials/modal-img.php'); ?>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modalImagen = document.getElementById('modalImagen');
+            const imagenes = document.querySelectorAll('.card-img-top');
+
+            imagenes.forEach(img => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', () => {
+                    modalImagen.src = img.src;
+                    const modal = new bootstrap.Modal(document.getElementById('imagenModal'));
+                    modal.show();
+                });
+            });
+        });
+    </script>
+
+    <!-- HEADER con buscador -->
+    <header class="position-relative snap-section">
+        <img src="assets/media/img/header-index.png" alt="Header" class="img-fluid w-100" style="height: 100dvh; object-fit: cover;" />
+        <div class="position-absolute top-50 start-50 translate-middle w-50 w-md-50 px-3">
+            <form action="/aurea/functions/buscar.php" method="GET">
+                <div class="input-group shadow">
+                    <input type="text" name="q" class="form-control" placeholder="Busca tus productos..." />
+                    <button class="btn btn-primary" style="background-color: #9D7AC0; color: white;" type="submit">Buscar</button>
+
                 </div>
             </form>
         </div>
@@ -49,7 +81,7 @@
     </div>
 
     <!-- SECCIÓN: Productos destacados -->
-    <section class="container my-5 snap-section" style="height: 100dvh;">
+    <section class="container my-5 snap-section" style="height: 100dvh; margin-top: 80px;">
         <h2 class="text-center mb-4">Best Sellers</h2>
         <div class="row g-4">
 
@@ -60,16 +92,16 @@
             ?>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 text-center">
-                <img src="<?= $producto['imagen_url'] ?>" class="card-img-top img-fluid" alt="<?= $producto['nombre'] ?>" style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title"><?= $producto['nombre'] ?></h5>
-                    <p class="card-text"><?= substr($producto['descripcion'], 0, 100) ?>...</p>
-                    <p class="fw-bold"><?= number_format($producto['precio'], 2) ?> €</p>
-                    <form action="agregar_carrito.php" method="POST">
-                    <input type="hidden" name="id_producto" value="<?= $producto['id_producto'] ?>">
-                    <button type="submit" class="btn btn-outline-primary">Añadir al carrito</button>
-                    </form>
-                </div>
+                    <img src="<?= htmlspecialchars($producto['imagen_url']) ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($producto['nombre']) ?>" style="height: 200px; object-fit: cover;" />
+                    <div class="card-body">
+                        <h5 class="card-title"><?= htmlspecialchars($producto['nombre']) ?></h5>
+                        <p class="card-text"><?= htmlspecialchars(substr($producto['descripcion'], 0, 100)) ?>...</p>
+                        <p class="fw-bold"><?= number_format($producto['precio'], 2) ?> €</p>
+                        <form action="agregar_carrito.php" method="POST">
+                            <input type="hidden" name="id_producto" value="<?= $producto['id_producto'] ?>" />
+                            <button type="submit" style="background-color: #9D7AC0; color: white;" class="btn ">Añadir al carrito</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <?php } ?>
@@ -99,7 +131,7 @@
     </section>
 
     <!-- SECCIÓN: Reseñas -->
-    <section class="container my-5 snap-section">
+    <section class="container my-5 snap-section" >
         <h2 class="text-center mb-4">Opiniones de nuestros clientes</h2>
         <div class="row g-4">
 
@@ -134,10 +166,11 @@
     
     
 
-
-
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
-    <?php include('partials/footer.php'); ?>  
+    <!-- Custom JS - Ajuste del Scroll -->
+    
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </html>
