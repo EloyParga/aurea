@@ -44,28 +44,27 @@ function obtenerResenasDestacadas($limite = 3) {
 
 function obtenerCategorias() {
     global $conn;
-    $sql = "SELECT id_categoria, nombre_categoria, icono_url FROM categorias";
+    $sql = "SELECT id_categoria, nombre, icono_url FROM categorias";
     $result = mysqli_query($conn, $sql);
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
 function obtenerProductosCatalogo($categoria = null, $busqueda = null) {
     global $conn;
-    $sql = "SELECT p.*, c.nombre_categoria AS categoria_nombre
+    $sql = "SELECT p.*, c.nombre AS categoria_nombre 
             FROM productos p 
-            JOIN producto_categoria pc ON  p.id_producto = pc.fk_id_producto
-            JOIN categorias c ON pc.fk_id_categoria = c.id_categoria 
+            JOIN categorias c ON p.id_categoria = c.id_categoria 
             WHERE 1";
 
     if ($categoria) {
-        $sql .= " AND c.id_categoria = " . intval($categoria);
+        $sql .= " AND p.id_categoria = " . intval($categoria);
     }
     if ($busqueda) {
         $busqueda = mysqli_real_escape_string($conn, $busqueda);
         $sql .= " AND (p.nombre LIKE '%$busqueda%' OR p.descripcion LIKE '%$busqueda%')";
     }
 
-    $sql .= " ORDER BY c.nombre_categoria, p.nombre";
+    $sql .= " ORDER BY c.nombre, p.nombre";
     $result = mysqli_query($conn, $sql);
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
@@ -73,7 +72,7 @@ function obtenerProductosCatalogo($categoria = null, $busqueda = null) {
 function agruparPorCategoria($productos) {
     $agrupados = [];
     foreach ($productos as $prod) {
-        $cat = $prod['categoria_nombre'] ?? 'Sin categoría';
+        $cat = $prod['categoria_nombre'];
         $agrupados[$cat][] = $prod;
     }
     return $agrupados;
