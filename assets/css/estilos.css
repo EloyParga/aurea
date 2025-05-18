@@ -18,15 +18,14 @@
     box-sizing: border-box;
 }
 
-html, body {
-  scroll-behavior: smooth;
-  margin: 0;
-  padding: 0;
-  overflow-y: hidden;
-}
+
 
 /* Estilos generales para el cuerpo de la página */
-body {
+html, body {
+    /* min-height: 100vh; */ /* ← Elimina o comenta esta línea */
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     font-family: 'Roboto Condensed', sans-serif;
     color: black;
     background-color: var(--color-blanco);
@@ -34,37 +33,31 @@ body {
     padding: 0;
 }
 
+
+
+
 /* Enlaces sin subrayado y color heredado */
 a {
     text-decoration: none;
     color: inherit;
 }
 
-/** ANIMACION SCROLL **/
-
-.snap-section {
-  height: 100dvh;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-.snap-container {
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  height: 100dvh;
-}
-
-
-
 /** NAVBAR **/
 
 /* Estilos de la barra de navegación */
 .navbar {
-    display: flex;
-    justify-content: space-between; /* Distribuye espacio entre los elementos */
-    align-items: center;
-    background-color: transparent;
-    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 1);
+    opacity: 1;
+    transition: background-color 0.3s ease, opacity 0.3s ease, backdrop-filter 0.3s;
+    padding-left: 100px; 
+    padding-right: 100px; 
+}
+
+/* Estado con scroll: parcialmente transparente y blur */
+.navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.4); /* Más transparente */
+    backdrop-filter: blur(8px); /* Más blur para destacar el efecto */
+    box-shadow: 0 2px 20px 0 rgba(0,0,0,0.08); /* Sombra sutil opcional */
 }
 
 /* Logo alineado a la izquierda */
@@ -121,7 +114,31 @@ a {
     opacity: 0.8; /* Efecto sutil de opacidad para los iconos */
 }
 
+/* Transición suave */
+.transition-navbar {
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
 
+/* Estado normal: completamente visible */
+.navbar {
+    background-color: rgba(255, 255, 255, 1);
+    opacity: 1;
+}
+
+/* Estado con scroll: parcialmente transparente */
+.navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.8); /* transparente */
+    backdrop-filter: blur(8px); /* desenfoque elegante */
+}
+
+
+
+.categoria-titulo {
+    text-align: right;
+    padding-top: 32px; /* Ajusta el valor según lo que necesites */
+    padding-right: 8px;
+    font-weight: 400;
+}
 
 
 

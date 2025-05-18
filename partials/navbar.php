@@ -15,7 +15,7 @@
 </head>
 <body>
     <!-- Barra de navegación -->
-    <nav class="navbar">
+    <nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top navbar-light">
         <div class="logo">
             <!-- Asumiendo que el logo está en /assets/media/img/logo.png -->
              <a href="/aurea/index.php">
@@ -38,5 +38,19 @@
             </a>
         </div>
     </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navbar = document.getElementById('mainNavbar');
+
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
