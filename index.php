@@ -20,8 +20,26 @@ $resenas_result = obtenerResenasDestacadas(2);
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/estilos.css" />
 </head>
-<body>
+<body style="padding-top: 100px;">
     <?php include('partials/navbar.php'); ?>
+
+    <?php include('partials/modal-img.php'); ?>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modalImagen = document.getElementById('modalImagen');
+            const imagenes = document.querySelectorAll('.card-img-top');
+
+            imagenes.forEach(img => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', () => {
+                    modalImagen.src = img.src;
+                    const modal = new bootstrap.Modal(document.getElementById('imagenModal'));
+                    modal.show();
+                });
+            });
+        });
+    </script>
 
     <!-- HEADER con buscador -->
     <header class="position-relative snap-section">
@@ -30,7 +48,7 @@ $resenas_result = obtenerResenasDestacadas(2);
             <form action="/aurea/functions/buscar.php" method="GET">
                 <div class="input-group shadow">
                     <input type="text" name="q" class="form-control" placeholder="Busca tus productos..." />
-                    <button class="btn btn-primary" type="submit">Buscar</button>
+                    <button class="btn btn-primary" style="background-color: #9D7AC0; color: white;" type="submit">Buscar</button>
                 </div>
             </form>
         </div>
@@ -58,7 +76,7 @@ $resenas_result = obtenerResenasDestacadas(2);
     </div>
 
     <!-- SECCIÓN: Productos destacados -->
-    <section class="container my-5 snap-section" style="height: 100dvh;">
+    <section class="container my-5 snap-section" style="height: 100dvh; margin-top: 80px;">
         <h2 class="text-center mb-4">Best Sellers</h2>
         <div class="row g-4">
             <?php while ($producto = $productos->fetch_assoc()): ?>
@@ -71,7 +89,7 @@ $resenas_result = obtenerResenasDestacadas(2);
                         <p class="fw-bold"><?= number_format($producto['precio'], 2) ?> €</p>
                         <form action="agregar_carrito.php" method="POST">
                             <input type="hidden" name="id_producto" value="<?= $producto['id_producto'] ?>" />
-                            <button type="submit" class="btn btn-outline-primary">Añadir al carrito</button>
+                            <button type="submit" style="background-color: #9D7AC0; color: white;" class="btn ">Añadir al carrito</button>
                         </form>
                     </div>
                 </div>
@@ -102,7 +120,7 @@ $resenas_result = obtenerResenasDestacadas(2);
     </section>
 
     <!-- SECCIÓN: Reseñas -->
-    <section class="container my-5 snap-section">
+    <section class="container my-5 snap-section" >
         <h2 class="text-center mb-4">Opiniones de nuestros clientes</h2>
         <div class="row g-4">
             <?php while ($resena = $resenas_result->fetch_assoc()): ?>
@@ -127,26 +145,8 @@ $resenas_result = obtenerResenasDestacadas(2);
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        const sections = document.querySelectorAll('.snap-section');
-        let isScrolling = false;
-
-        window.addEventListener('wheel', (e) => {
-            if (isScrolling) return;
-
-            const direction = e.deltaY > 0 ? 1 : -1;
-            const current = Math.round(window.scrollY / window.innerHeight);
-            const target = Math.min(Math.max(current + direction, 0), sections.length - 1);
-
-            isScrolling = true;
-            window.scrollTo({
-                top: sections[target].offsetTop,
-                behavior: 'smooth'
-            });
-
-            setTimeout(() => { isScrolling = false; }, 1000);
-        }, { passive: true });
-    </script>
+    
+    <!-- Custom JS - Ajuste del Scroll -->
+    
 </body>
 </html>
