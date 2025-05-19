@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($usuario && $password) {
         // Buscar usuario en DB
-        $stmt = $conn->prepare("SELECT id_usuario, nombre_usuario, contraseña FROM usuarios WHERE nombre_usuario = ?");
+        $stmt = $conn->prepare("SELECT id_usuario, nombre_usuario, contraseña, tipo_usuario FROM usuarios WHERE nombre_usuario = ?");
         $stmt->bind_param("s", $usuario);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -21,7 +21,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Login correcto
                 $_SESSION['usuario_id'] = $row['id_usuario'];
                 $_SESSION['usuario_nombre'] = $row['nombre_usuario'];
-                header("Location: index.php");
+                $_SESSION['tipo_usuario'] = $row['tipo_usuario'];
+
+                if ($_SESSION['tipo_usuario'] === 'admin') {
+                    // echo "<pre>";
+                    // print_r($_SESSION);
+                    // echo "</pre>";
+                    // exit;
+                header("Location: /aurea/admin/index.php");
+                exit;
+            } else {
+                header("Location: /aurea/index.php");
+                exit;
+            }
                 exit;
             } else {
                 $error = "Contraseña incorrecta.";
