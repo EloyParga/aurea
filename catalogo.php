@@ -112,9 +112,10 @@
                                         <h5 class="card-title"><?= $producto['nombre'] ?></h5>
                                         <p class="card-text"><?= substr($producto['descripcion'], 0, 100) ?>...</p>
                                         <p class="fw-bold"><?= number_format($producto['precio'], 2) ?> €</p>
-                                        <form action="agregar_carrito.php" method="POST">
-                                            <input type="hidden" name="id_producto" value="<?= $producto['id_producto'] ?>">
-                                            <button type="submit" class="btn" style="background-color: #9D7AC0; color: white;">Añadir al carrito</button>
+                                        <form class="form-agregar-carrito">
+                                            <input type="hidden" name="producto_id" value="<?= $producto['id_producto'] ?>">
+                                            <input type="number" name="cantidad" value="1" min="1" style="width: 50px;">
+                                            <button type="button" class="btn btn-agregar" style="background-color: #9D7AC0; color: white;">Agregar al carrito</button>
                                         </form>
                                     </div>
                                 </div>
@@ -141,10 +142,13 @@
                                         <h5 class="card-title"><?= $producto['nombre'] ?></h5>
                                         <p class="card-text"><?= substr($producto['descripcion'], 0, 100) ?>...</p>
                                         <p class="fw-bold"><?= number_format($producto['precio'], 2) ?> €</p>
-                                        <form action="agregar_carrito.php" method="POST">
-                                            <input type="hidden" name="id_producto" value="<?= $producto['id_producto'] ?>">
-                                            <button type="submit" class="btn" style="background-color: #9D7AC0; color: white;">Añadir al carrito</button>
+                                        <form class="form-agregar-carrito">
+                                            <input type="hidden" name="producto_id" value="<?= $producto['id_producto'] ?>">
+                                            <input type="number" name="cantidad" value="1" min="1" style="width: 50px;">
+                                            <button type="button" class="btn btn-agregar" style="background-color: #9D7AC0; color: white;">Agregar al carrito</button>
                                         </form>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -159,6 +163,39 @@
 
 
     <?php include('partials/footer.php'); ?>  
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.form-agregar-carrito').forEach(form => {
+                form.querySelector('button').addEventListener('click', () => {
+                    const producto_id = form.querySelector('[name="producto_id"]').value;
+                    const cantidad = form.querySelector('[name="cantidad"]').value;
+
+                    fetch('functions/agregar_carrito.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams({
+                            producto_id,
+                            cantidad
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('✅ Producto agregado al carrito');
+                        } else {
+                            alert('⚠️ ' + (data.error || 'Error al agregar al carrito'));
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        alert('❌ Error de red');
+                    });
+                });
+            });
+        });
+    </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/scripts.js"></script>
