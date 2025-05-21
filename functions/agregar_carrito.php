@@ -23,7 +23,7 @@ $usuarioId = intval($_SESSION['usuario_id']);
 
 if ($productoId <= 0 || $cantidad <= 0) {
     http_response_code(400);
-    echo json_encode(['error' => 'Datos inválidos']);
+    echo json_encode(['error' => 'Datos inválidos 4']);
     exit;
 }
 

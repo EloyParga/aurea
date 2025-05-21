@@ -70,6 +70,11 @@ require_once('../functions/db.php');
             gap: 30px;
         }
 
+        .card-grid a {
+            text-decoration: none;
+            color: inherit;
+        }
+
         .card {
             background: white;
             border-radius: 12px;
@@ -107,23 +112,24 @@ require_once('../functions/db.php');
     <div class="welcome">Hola, <?= htmlspecialchars($usuario) ?> 👋</div>
 
     <div class="card-grid">
-        <div class="card">
+        <a href="/aurea/admin/usuarios.php" class="card">
             <h3>Usuarios</h3>
             <p>Gestiona cuentas de clientes y administradores.</p>
-        </div>
-        <div class="card">
+        </a>
+        <a href="/aurea/admin/pedidos.php" class="card">
             <h3>Pedidos</h3>
             <p>Consulta y gestiona los pedidos realizados.</p>
-        </div>
-        <div class="card">
+        </a>
+        <a href="/aurea/admin/productos.php" class="card">
             <h3>Productos</h3>
             <p>Agrega, edita o elimina productos del catálogo.</p>
-        </div>
-        <div class="card">
+        </a>
+        <a href="/aurea/admin/estadisticas.php" class="card">
             <h3>Estadísticas</h3>
             <p>Consulta informes y métricas del sistema.</p>
-        </div>
+        </a>
     </div>
+
 </div>
 
 </body>
