@@ -1,25 +1,29 @@
-<?php
-require_once('../aurea/functions/db.php');
-
-// Obtener productos destacados (máx 6)
-$productos = obtenerProductosDestacados(6);
-
-// Obtener 3 reseñas destacadas
-$resenas_result = obtenerResenasDestacadas(2);
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio - Aurea</title>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/estilos.css" />
+    <link rel="stylesheet" href="/aurea/assets/css/estilos.css">
+    <link rel="stylesheet" href="/aurea/assets/css/estilos.css">
 </head>
+
+<body class="snap-container">
+    <?php include('partials/navbar.php'); ?>
+    
+    <!-- HEADER -->
+    <header>
+        <img src="/aurea/assets/media/img/heade" alt="" srcset="">
+        <div>
+            <form action="buscar.php" method="GET">
+                <div>
+                    <input type="text" name="" id="">
+                    <button></button>
+
 <body style="padding-top: 100px;">
     <?php include('partials/navbar.php'); ?>
 
@@ -49,6 +53,7 @@ $resenas_result = obtenerResenasDestacadas(2);
                 <div class="input-group shadow">
                     <input type="text" name="q" class="form-control" placeholder="Busca tus productos..." />
                     <button class="btn btn-primary" style="background-color: #9D7AC0; color: white;" type="submit">Buscar</button>
+
                 </div>
             </form>
         </div>
@@ -58,13 +63,13 @@ $resenas_result = obtenerResenasDestacadas(2);
     <div id="carouselNoticias" class="carousel slide snap-section" data-bs-ride="carousel">
         <div class="carousel-inner" style="height: 100dvh;">
             <div class="carousel-item active">
-                <img src="assets/media/img/slide1.jpg" class="d-block w-100 h-100" alt="Slide 1" style="object-fit: cover;" />
+                <img src="/aurea-ecomerce/assets/media/img/slide1.jpg" class="d-block w-100 h-100" alt="Slide 1" style="object-fit: cover;">
             </div>
             <div class="carousel-item">
-                <img src="assets/media/img/slide2.jpg" class="d-block w-100 h-100" alt="Slide 2" style="object-fit: cover;" />
+                <img src="/aurea-ecomerce/assets/media/img/slide2.jpg" class="d-block w-100 h-100" alt="Slide 2" style="object-fit: cover;">
             </div>
             <div class="carousel-item">
-                <img src="assets/media/img/slide3.jpg" class="d-block w-100 h-100" alt="Slide 3" style="object-fit: cover;" />
+                <img src="/aurea-ecomerce/assets/media/img/slide3.jpg" class="d-block w-100 h-100" alt="Slide 3" style="object-fit: cover;">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselNoticias" data-bs-slide="prev">
@@ -79,7 +84,12 @@ $resenas_result = obtenerResenasDestacadas(2);
     <section class="container my-5 snap-section" style="height: 100dvh; margin-top: 80px;">
         <h2 class="text-center mb-4">Best Sellers</h2>
         <div class="row g-4">
-            <?php while ($producto = $productos->fetch_assoc()): ?>
+
+            <?php
+            $query = "SELECT * FROM productos WHERE destacado = 1 LIMIT 6";
+            $result = mysqli_query($conn, $query);
+            while ($producto = mysqli_fetch_assoc($result)) {
+            ?>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 text-center">
                     <img src="<?= htmlspecialchars($producto['imagen_url']) ?>" class="card-img-top img-fluid" alt="<?= htmlspecialchars($producto['nombre']) ?>" style="height: 200px; object-fit: cover;" />
@@ -95,26 +105,27 @@ $resenas_result = obtenerResenasDestacadas(2);
                     </div>
                 </div>
             </div>
-            <?php endwhile; ?>
+            <?php } ?>
+
         </div>
     </section>
 
     <!-- SECCIÓN: Imagen + Valores -->
     <section class="position-relative text-center snap-section" style="height: 100dvh;">
-        <img src="assets/media/img/valores-bg.jpg" class="img-fluid w-100" style="height: 100dvh; object-fit: cover;" alt="Valores" />
+        <img src="/aurea-ecomerce/assets/valores-bg.jpg" class="img-fluid w-100" style="height: 800px; object-fit: cover;" alt="Valores">
         <div class="position-absolute top-50 start-50 translate-middle bg-white bg-opacity-75 p-4 rounded-3" style="width: 90%; max-width: 860px;">
             <div class="row gy-3">
                 <div class="col-12 col-md-4">
-                    <img src="assets/media/svg/hoja-icon.svg" width="60" alt="Natural" />
-                    <p class="mt-2">Usamos solo ingredientes botánicos certificados que nutren tu piel y respetan el planeta.</p>
+                    <img src="assets/hoja-icon.svg" width="60" alt="Natural">
+                    <p class="mt-2">Ingredientes naturales</p>
                 </div>
                 <div class="col-12 col-md-4">
-                    <img src="assets/media/svg/animal-icon.svg" width="60" alt="Cruelty Free" />
-                    <p class="mt-2">Cada producto es desarrollado sin pruebas en animales y con prácticas éticas en toda la cadena.</p>
+                    <img src="assets/animal-icon.svg" width="60" alt="Cruelty Free">
+                    <p class="mt-2">No testamos en animales</p>
                 </div>
                 <div class="col-12 col-md-4">
-                    <img src="assets/media/svg/reciclado-icon.svg" width="60" alt="Reciclado" />
-                    <p class="mt-2">Cada envase está hecho con materiales reciclables, cuidando el planeta desde el diseño.</p>
+                    <img src="assets/reciclado-icon.svg" width="60" alt="Reciclado">
+                    <p class="mt-2">Envases reciclados</p>
                 </div>
             </div>
         </div>
@@ -124,25 +135,70 @@ $resenas_result = obtenerResenasDestacadas(2);
     <section class="container my-5 snap-section" >
         <h2 class="text-center mb-4">Opiniones de nuestros clientes</h2>
         <div class="row g-4">
-            <?php while ($resena = $resenas_result->fetch_assoc()): ?>
+
+            <?php
+            $resenas_query = "
+            SELECT r.opinion, r.puntuacion, u.nombre_usuario
+            FROM resenas r
+            JOIN usuarios u ON r.id_usuario = u.id_usuario
+            ORDER BY r.puntuacion DESC
+            LIMIT 3
+            ";
+            $resenas_result = mysqli_query($conn, $resenas_query);
+            while ($resena = mysqli_fetch_assoc($resenas_result)) {
+            ?>
             <div class="col-12 col-md-4">
                 <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= htmlspecialchars($resena['nombre_usuario']) ?></h5>
-                        <p class="card-text"><?= htmlspecialchars($resena['opinion']) ?></p>
-                        <p class="text-warning">
-                            <?= str_repeat('★', (int)$resena['puntuacion']) ?>
-                            <?= str_repeat('☆', 5 - (int)$resena['puntuacion']) ?>
-                        </p>
-                    </div>
+                <div class="card-body">
+                    <h5 class="card-title"><?= $resena['nombre_usuario'] ?></h5>
+                    <p class="card-text"><?= $resena['opinion'] ?></p>
+                    <p class="text-warning">
+                    <?= str_repeat('★', $resena['puntuacion']) ?>
+                    <?= str_repeat('☆', 5 - $resena['puntuacion']) ?>
+                    </p>
+                </div>
                 </div>
             </div>
-            <?php endwhile; ?>
+            <?php } ?>
+
         </div>
     </section>
 
-    <!-- SECCIÓN: Footer -->
-    <?php include('partials/footer.php'); ?>
+    
+    
+
+
+        <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.form-agregar-carrito').forEach(form => {
+                form.querySelector('button').addEventListener('click', () => {
+                    const producto_id = form.querySelector('[name="producto_id"]').value;
+                    const cantidad = form.querySelector('[name="cantidad"]').value;
+
+                    fetch('functions/agregar_carrito.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams({
+                            producto_id,
+                            cantidad
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('✅ Producto agregado al carrito');
+                        } else {
+                            alert('⚠️ ' + (data.error || 'Error al agregar al carrito'));
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        alert('❌ Error de red');
+                    });
+                });
+            });
+        });
+    </script>
 
 
         <script>
@@ -182,4 +238,9 @@ $resenas_result = obtenerResenasDestacadas(2);
    
     
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </html>
+
+
+
+
