@@ -18,6 +18,7 @@ require_once('../functions/db.php');
     <meta charset="UTF-8" />
     <title>Panel de Administración - Aurea</title>
     <link rel="stylesheet" href="/aurea/assets/css/estilos.css" />
+    
     <style>
         body {
             margin: 0;
