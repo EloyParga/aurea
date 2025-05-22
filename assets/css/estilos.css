@@ -140,6 +140,10 @@ a {
     font-weight: 400;
 }
 
+.card.sin-stock {
+    opacity: 0.6;
+}
+
 
 
 

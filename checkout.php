@@ -31,6 +31,18 @@ function obtenerCarrito($usuario_id) {
 
 $carrito = obtenerCarrito($id_usuario);
 
+// Agrupar productos por ID para evitar duplicados
+$carrito_agrupado = [];
+foreach ($carrito as $item) {
+    $id_producto = $item['id_producto'];
+    if (!isset($carrito_agrupado[$id_producto])) {
+        $carrito_agrupado[$id_producto] = $item;
+    } else {
+        $carrito_agrupado[$id_producto]['cantidad'] += $item['cantidad'];
+    }
+}
+$carrito = array_values($carrito_agrupado); // Reindexar el array
+
 if (empty($carrito)) {
     echo "<p>No hay productos en el carrito.</p>";
     exit;
@@ -54,17 +66,30 @@ $stmt->execute();
 $id_compra = $stmt->insert_id;
 $stmt->close();
 
-// Insertar detalles en compra_producto
+// Insertar detalles en compra_producto y actualizar stock
 $stmt_detalle = $conn->prepare("INSERT INTO compra_producto (fk_id_compra, fk_id_producto, cantidad, precio_unitario) VALUES (?, ?, ?, ?)");
 if (!$stmt_detalle) {
     die("Error al preparar detalles de compra: " . $conn->error);
 }
 
+$stmt_update_stock = $conn->prepare("UPDATE productos SET stock = stock - ? WHERE id_producto = ? AND stock >= ?");
+
 foreach ($carrito as $item) {
+    // Insertar detalle de compra
     $stmt_detalle->bind_param("iiid", $id_compra, $item['id_producto'], $item['cantidad'], $item['precio']);
     $stmt_detalle->execute();
+
+    // Actualizar stock
+    $stmt_update_stock->bind_param("iii", $item['cantidad'], $item['id_producto'], $item['cantidad']);
+    $stmt_update_stock->execute();
+
+    if ($stmt_update_stock->affected_rows === 0) {
+        die("Error: Stock insuficiente para el producto " . htmlspecialchars($item['nombre']));
+    }
 }
+
 $stmt_detalle->close();
+$stmt_update_stock->close();
 
 // Vaciar carrito
 // 1. Obtener id_carrito del usuario

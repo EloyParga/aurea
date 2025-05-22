@@ -37,7 +37,11 @@
             background-color: #8057a3;
             color: white;
         }
+        .sin-stock {
+            opacity: 0.6;
+        }
     </style>
+
 </head>
 
 
@@ -107,20 +111,27 @@
                     <div class="row g-4">
                         <?php foreach ($productosCat as $producto): ?>
                             <div class="col-12 col-md-6 col-lg-4">
-                                <div class="card h-100 text-center">
+                                <div class="card h-100 text-center <?= $producto['stock'] <= 0 ? 'sin-stock' : '' ?>">
                                     <img src="<?= $producto['imagen_url'] ?>" class="card-img-top img-fluid" alt="<?= $producto['nombre'] ?>" style="height: 200px; object-fit: cover;">
                                     <div class="card-body">
                                         <h5 class="card-title"><?= $producto['nombre'] ?></h5>
                                         <p class="card-text"><?= substr($producto['descripcion'], 0, 100) ?>...</p>
                                         <p class="fw-bold"><?= number_format($producto['precio'], 2) ?> €</p>
-                                        <form class="form-agregar-carrito">
-                                            <input type="hidden" name="producto_id" value="<?= $producto['id_producto'] ?>">
-                                            <input type="number" name="cantidad" value="1" min="1" style="width: 50px;">
-                                            <button type="button" class="btn btn-agregar" style="background-color: #9D7AC0; color: white;">Agregar al carrito</button>
-                                        </form>
+
+                                        <?php if ($producto['stock'] <= 0): ?>
+                                            <p class="text-danger fw-bold">Sin stock</p>
+                                            <button class="btn btn-secondary" disabled>Agregar al carrito</button>
+                                        <?php else: ?>
+                                            <form class="form-agregar-carrito">
+                                                <input type="hidden" name="producto_id" value="<?= $producto['id_producto'] ?>">
+                                                <input type="number" name="cantidad" value="1" min="1" max="<?= $producto['stock'] ?>" style="width: 50px;">
+                                                <button type="button" class="btn btn-agregar" style="background-color: #9D7AC0; color: white;">Agregar al carrito</button>
+                                            </form>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
+
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -137,22 +148,27 @@
                     <div class="row g-4">
                         <?php foreach ($productos as $producto): ?>
                             <div class="col-12 col-md-6 col-lg-4">
-                                <div class="card h-100 text-center">
+                                <div class="card h-100 text-center <?= $producto['stock'] <= 0 ? 'sin-stock' : '' ?>">
                                     <img src="<?= $producto['imagen_url'] ?>" class="card-img-top img-fluid" alt="<?= $producto['nombre'] ?>" style="height: 200px; object-fit: cover;">
                                     <div class="card-body">
                                         <h5 class="card-title"><?= $producto['nombre'] ?></h5>
                                         <p class="card-text"><?= substr($producto['descripcion'], 0, 100) ?>...</p>
                                         <p class="fw-bold"><?= number_format($producto['precio'], 2) ?> €</p>
-                                        <form class="form-agregar-carrito">
-                                            <input type="hidden" name="producto_id" value="<?= $producto['id_producto'] ?>">
-                                            <input type="number" name="cantidad" value="1" min="1" style="width: 50px;">
-                                            <button type="button" class="btn btn-agregar" style="background-color: #9D7AC0; color: white;">Agregar al carrito</button>
-                                        </form>
 
-
+                                        <?php if ($producto['stock'] <= 0): ?>
+                                            <p class="text-danger fw-bold">Sin stock</p>
+                                            <button class="btn btn-secondary" disabled>Agregar al carrito</button>
+                                        <?php else: ?>
+                                            <form class="form-agregar-carrito">
+                                                <input type="hidden" name="producto_id" value="<?= $producto['id_producto'] ?>">
+                                                <input type="number" name="cantidad" value="1" min="1" max="<?= $producto['stock'] ?>" style="width: 50px;">
+                                                <button type="button" class="btn btn-agregar" style="background-color: #9D7AC0; color: white;">Agregar al carrito</button>
+                                            </form>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
+
                         <?php endforeach; ?>
                     </div>
                 </div>
