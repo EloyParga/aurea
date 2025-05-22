@@ -1,0 +1,20 @@
+[
+  {
+    "titulo": "¡Lanzamos nueva línea de cuidado facial!",
+    "descripcion": "Con ingredientes botánicos, sin crueldad y en envases reciclables. Descúbrela hoy.",
+    "imagen_url": "assets/media/img/slide1.jpg",
+    "enlace": "catalogo.php"
+  },
+  {
+    "titulo": "Envíos gratis por compras mayores a 50€",
+    "descripcion": "Por tiempo limitado. Aplica a toda la península.",
+    "imagen_url": "assets/media/img/slide2.jpg",
+    "enlace": ""
+  },
+  {
+    "titulo": "🌿 Belleza natural, consciente y efectiva",
+    "descripcion": "Únete al movimiento clean beauty. Productos que cuidan tu piel y el planeta.",
+    "imagen_url": "assets/media/img/slide3.jpg",
+    "enlace": "acerca.php"
+  }
+]

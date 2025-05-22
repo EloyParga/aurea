@@ -24,67 +24,11 @@ $totalUsuarios = $totalResult->fetch_assoc()['total'];
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Usuarios - Aurea</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/aurea/assets/css/estilos.css" />
-    <style>
-        body {
-            height: 100vh;
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            padding: 40px;
-            background-color: #f3f0f9;
-        }
-        h1 {
-            margin-top: 50px;
-            color: #805AA7;
-        }
-        table {
-            width: 100%;
-            margin-top: 25px;
-            border-collapse: collapse;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        th {
-            background-color: #9D7AC0;
-            color: white;
-        }
-        button {
-            background: #805AA7;
-            color: white;
-            padding: 6px 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #6f4fa3;
-        }
-        form.inline {
-            display: inline;
-        }
-
-        .contador-usuarios {
-            margin-top: 15px;
-            margin-bottom: 25px;
-            background: #fff;
-            padding: 15px 20px;
-            border-left: 6px solid #805AA7;
-            font-size: 16px;
-            font-weight: 500;
-            color: #444;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-            display: inline-block;
-        }
-
-    </style>
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-
 <?php include('partials/admin_navbar.php'); ?>
 
 <h1>Gestión de Usuarios</h1>

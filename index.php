@@ -7,6 +7,10 @@ $productos = obtenerProductosDestacados(6);
 // Obtener 3 reseñas destacadas
 $resenas_result = obtenerResenasDestacadas(2);
 
+$noticias_json = file_get_contents('assets/noticias.json');
+$noticias = json_decode($noticias_json, true);
+
+
 
 ?>
 
@@ -59,16 +63,22 @@ $resenas_result = obtenerResenasDestacadas(2);
     <!-- CARRUSEL de novedades -->
     <div id="carouselNoticias" class="carousel slide snap-section" data-bs-ride="carousel">
         <div class="carousel-inner" style="height: 100dvh;">
-            <div class="carousel-item active">
-                <img src="assets/media/img/slide1.jpg" class="d-block w-100 h-100" alt="Slide 1" style="object-fit: cover;" />
-            </div>
-            <div class="carousel-item">
-                <img src="assets/media/img/slide2.jpg" class="d-block w-100 h-100" alt="Slide 2" style="object-fit: cover;" />
-            </div>
-            <div class="carousel-item">
-                <img src="assets/media/img/slide3.jpg" class="d-block w-100 h-100" alt="Slide 3" style="object-fit: cover;" />
-            </div>
+            <?php foreach ($noticias as $index => $noticia): ?>
+                <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                    <div class="position-relative h-100 w-100">
+                        <img src="<?= htmlspecialchars($noticia['imagen_url']) ?>" class="d-block w-100 h-100" style="object-fit: cover;" alt="Noticia <?= $index + 1 ?>" />
+                        <div class="position-absolute top-50 start-50 translate-middle text-white text-center px-4 py-3 bg-dark bg-opacity-50 rounded shadow" style="max-width: 700px;">
+                            <h2 class="mb-3"><?= htmlspecialchars($noticia['titulo']) ?></h2>
+                            <p class="lead"><?= htmlspecialchars($noticia['descripcion']) ?></p>
+                            <?php if (!empty($noticia['enlace'])): ?>
+                                <a href="<?= htmlspecialchars($noticia['enlace']) ?>" class="btn mt-3" style="background-color: #9D7AC0; color: white;">Ver más</a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
+
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselNoticias" data-bs-slide="prev">
             <span class="carousel-control-prev-icon"></span>
         </button>
@@ -76,6 +86,7 @@ $resenas_result = obtenerResenasDestacadas(2);
             <span class="carousel-control-next-icon"></span>
         </button>
     </div>
+
 
     <!-- SECCIÓN: Productos destacados -->
     <section class="container my-5 snap-section" style="height: 100dvh; margin-top: 80px;">
