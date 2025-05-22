@@ -35,6 +35,7 @@
         }
         .btn-categoria:hover {
             background-color: #8057a3;
+            color: white;
         }
     </style>
 </head>

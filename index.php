@@ -6,6 +6,8 @@ $productos = obtenerProductosDestacados(6);
 
 // Obtener 3 reseñas destacadas
 $resenas_result = obtenerResenasDestacadas(2);
+
+
 ?>
 
 <!DOCTYPE html>

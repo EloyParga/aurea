@@ -5,7 +5,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] !== 'admin') {
     exit;
 }
 
-require_once(__DIR__ . '/../../functions/db.php'); // Ruta corregida
+require_once(__DIR__ . '/../../functions/db.php'); 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $accion = $_POST['accion'] ?? '';
