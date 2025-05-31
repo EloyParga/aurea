@@ -1,16 +1,19 @@
 <?php
-// admin_navbar.php
+    // @author: EloyParga
+    // @version: 1.0
+    
+
 ?>
 <nav class="navbar">
     <div class="nav-left">
-        <a href="/aurea/admin/index.php">Panel</a>
-        <a href="/aurea/admin/usuarios.php">Usuarios</a>
-        <a href="/aurea/admin/productos.php">Productos</a>
-        <a href="/aurea/admin/pedidos.php">Pedidos</a>
+        <a href="index.php">Panel</a>
+        <a href="usuarios.php">Usuarios</a>
+        <a href="productos.php">Productos</a>
+        <a href="pedidos.php">Pedidos</a>
     </div>
     <div class="nav-right">
         <a href="javascript:history.back();">⬅ Atrás</a>
-        <form method="post" action="/aurea/logout.php" style="display:inline;">
+        <form method="post" action="../logout.php" style="display:inline;">
             <button class="logout-btn">Cerrar sesión</button>
         </form>
     </div>

@@ -18,7 +18,7 @@ if (isset($_GET['q'])) {
     <meta charset="UTF-8">
     <title>Buscar - Aurea</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/aurea/assets/css/estilos.css">
+    <link rel="stylesheet" href="../assets/css/estilos.css">
     <style>
         body {
             background-color: #f7f3fc;

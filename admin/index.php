@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] !== 'admin') {
-    header("Location: /aurea/login.php");
+    header("Location: ../login.php");
     exit;
 }
 
@@ -17,7 +17,7 @@ require_once('../functions/db.php');
 <head>
     <meta charset="UTF-8" />
     <title>Panel de Administración - Aurea</title>
-    <link rel="stylesheet" href="/aurea/assets/css/estilos.css" />
+    <link rel="stylesheet" href="../assets/css/estilos.css" />
     
     <style>
         body {
@@ -104,7 +104,7 @@ require_once('../functions/db.php');
 
 <header>
     Panel de Administración - Aurea
-    <form method="post" action="/aurea/logout.php">
+    <form method="post" action="../logout.php" >
         <button class="logout-btn">Cerrar sesión</button>
     </form>
 </header>
@@ -113,19 +113,19 @@ require_once('../functions/db.php');
     <div class="welcome">Hola, <?= htmlspecialchars($usuario) ?> 👋</div>
 
     <div class="card-grid">
-        <a href="/aurea/admin/usuarios.php" class="card">
+        <a href="usuarios.php" class="card">
             <h3>Usuarios</h3>
             <p>Gestiona cuentas de clientes y administradores.</p>
         </a>
-        <a href="/aurea/admin/pedidos.php" class="card">
+        <a href="pedidos.php" class="card">
             <h3>Pedidos</h3>
             <p>Consulta y gestiona los pedidos realizados.</p>
         </a>
-        <a href="/aurea/admin/productos.php" class="card">
+        <a href="productos.php" class="card">
             <h3>Productos</h3>
             <p>Agrega, edita o elimina productos del catálogo.</p>
         </a>
-        <a href="/aurea/admin/estadisticas.php" class="card">
+        <a href="estadisticas.php" class="card">
             <h3>Estadísticas</h3>
             <p>Consulta informes y métricas del sistema.</p>
         </a>

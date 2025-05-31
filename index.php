@@ -1,5 +1,5 @@
 <?php
-require_once('../aurea/functions/db.php');
+require_once('functions/db.php');
 
 // Obtener productos destacados (máx 6)
 $productos = obtenerProductosDestacados(6);
@@ -51,7 +51,7 @@ $noticias = json_decode($noticias_json, true);
     <header class="position-relative snap-section">
         <img src="assets/media/img/header-index.png" alt="Header" class="img-fluid w-100" style="height: 100dvh; object-fit: cover;" />
         <div class="position-absolute top-50 start-50 translate-middle w-50 w-md-50 px-3">
-            <form action="/aurea/functions/buscar.php" method="GET">
+            <form action="functions/buscar.php" method="GET">
                 <div class="input-group shadow">
                     <input type="text" name="q" class="form-control" placeholder="Busca tus productos..." />
                     <button class="btn btn-primary" style="background-color: #9D7AC0; color: white;" type="submit">Buscar</button>

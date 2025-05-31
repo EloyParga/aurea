@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] !== 'admin') {
-    header("Location: /aurea/login.php");
+    header("Location: ../login.php");
     exit;
 }
 
@@ -20,7 +20,7 @@ $promediosPuntuacion = obtenerPromedioPuntuacion();
 <head>
     <meta charset="UTF-8">
     <title>Estadísticas - Aurea</title>
-    <link rel="stylesheet" href="/aurea/assets/css/estilos.css">
+    <link rel="stylesheet" href="../assets/css/estilos.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>

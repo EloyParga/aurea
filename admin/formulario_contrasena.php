@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] !== 'admin') {
-    header("Location: /aurea/login.php");
+    header("Location: ../login.php");
     exit;
 }
 
@@ -28,7 +28,7 @@ if (!$usuario) {
 <head>
     <meta charset="UTF-8">
     <title>Cambiar contraseña - Admin</title>
-    <link rel="stylesheet" href="/aurea/assets/css/estilos.css">
+    <link rel="stylesheet" href="../assets/css/estilos.css">
     <style>
         body {
             font-family: 'Roboto', sans-serif;

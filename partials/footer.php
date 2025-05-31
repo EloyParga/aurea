@@ -14,9 +14,9 @@
     <div class="footer-column footer-right">
         <h4>Follow Us</h4>
         <div class="social-icons">
-            <a href="#"><img src="/aurea/assets/media/svg/instagram.svg" alt="Instagram" width="32"></a>
-            <a href="#"><img src="/aurea/assets/media/svg/twitter.svg" alt="X" width="32"></a>
-            <a href="#"><img src="/aurea/assets/media/svg/facebook.svg" alt="Facebook" width="32"></a>
+            <a href="#"><img src="../assets/media/svg/instagram.svg" alt="Instagram" width="32"></a>
+            <a href="#"><img src="../assets/media/svg/twitter.svg" alt="X" width="32"></a>
+            <a href="#"><img src="../assets/media/svg/facebook.svg" alt="Facebook" width="32"></a>
         </div>
     </div>
 

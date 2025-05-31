@@ -78,28 +78,28 @@
 
 <nav id="mainNavbar" class="navbar fixed-top navbar-light">
     <div class="logo">
-        <a href="/aurea/index.php">
-            <img src="/aurea/assets/media/img/logo.png" alt="Logo" width="200" height="50" />
+        <a href="../index.php">
+            <img src="../assets/media/img/logo.png" alt="Logo" width="200" height="50" />
         </a>
     </div>
     <div class="menu-center">
-        <a href="/aurea/index.php">Inicio</a>
-        <a href="/aurea/catalogo.php">Productos</a>
-        <a href="/aurea/acerca.php">Acerca de</a>
+        <a href="../index.php">Inicio</a>
+        <a href="../catalogo.php">Productos</a>
+        <a href="../acerca.php">Acerca de</a>
     </div>
     <div class="menu-right">
-        <a href="/aurea/carrito.php" class="icon">
-            <img src="/aurea/assets/media/svg/car-icon.svg" alt="Carrito" width="40" height="40" />
+        <a href="../carrito.php" class="icon">
+            <img src="../assets/media/svg/car-icon.svg" alt="Carrito" width="40" height="40" />
         </a>
 
         <div class="user-dropdown">
-            <img src="/aurea/assets/media/svg/user-icon.svg" alt="Usuario" width="40" height="40" id="userIcon" style="cursor:pointer;">
+            <img src="../assets/media/svg/user-icon.svg" alt="Usuario" width="40" height="40" id="userIcon" style="cursor:pointer;">
             <div class="user-dropdown-menu" id="userDropdownMenu">
                 <?php if (isset($_SESSION['usuario_id'])): ?>
-                    <a href="/aurea/logout.php">Cerrar sesión</a>
+                    <a href="../logout.php">Cerrar sesión</a>
                 <?php else: ?>
-                    <a href="/aurea/login.php">Iniciar sesión</a>
-                    <a href="/aurea/registro.php">Registrarse</a>
+                    <a href="../login.php">Iniciar sesión</a>
+                    <a href="../registro.php">Registrarse</a>
                 <?php endif; ?>
             </div>
         </div>

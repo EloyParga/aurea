@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Registro - Aurea</title>
-<link rel="stylesheet" href="/aurea/assets/css/estilos.css" />
+<link rel="stylesheet" href="/assets/css/estilos.css" />
 <style>
     body {
         font-family: 'Roboto', sans-serif;
@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-<a href="/aurea/index.php" class="close-btn" id="closeBtn" title="Cerrar">
+<a href="/index.php" class="close-btn" id="closeBtn" title="Cerrar">
     &times;
 </a>
 

@@ -71,7 +71,7 @@
     <header class="position-relative w-100" style="padding-top: 100px;">
         <img src="assets/media/img/header-catalog.jpg" class="img-fluid w-100" style="height: 400px; width: 100%; object-fit: cover; object-position: center; " alt="imagen mujer rostro" srcset="">
         <div class="position-absolute top-50 start-0 translate-middle-y  w-50" style="margin-left: 2rem !important;">
-            <form action="/aurea/functions/buscar.php" method="GET">
+            <form action="/functions/buscar.php" method="GET">
                 <div class="input-group shadow">
                     <input type="text" name="q" class="form-control" placeholder="Busca tus productos..." />
                     <button class="btn btn-primary" style="background-color: #9D7AC0; color: white;" type="submit">Buscar</button>

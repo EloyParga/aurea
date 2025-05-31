@@ -28,10 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // print_r($_SESSION);
                     // echo "</pre>";
                     // exit;
-                header("Location: /aurea/admin/index.php");
+                header("Location: /admin/index.php");
                 exit;
             } else {
-                header("Location: /aurea/index.php");
+                header("Location: /index.php");
                 exit;
             }
                 exit;
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Iniciar sesión - Aurea</title>
-    <link rel="stylesheet" href="/aurea/assets/css/estilos.css" />
+    <link rel="stylesheet" href="/assets/css/estilos.css" />
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -129,9 +129,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .register-link a:hover {
             text-decoration: underline;
         }
+
+        .close-btn {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 36px;
+        height: 36px;
+        background-color: #805AA7;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 36px;
+        text-decoration: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease, background-color 0.3s;
+        z-index: 10;
+        }
+        .close-btn:hover {
+            background-color: #9D7AC0;
+            transform: scale(1.1);
+        }
+        .fade-out {
+            animation: fadeOutPage 0.5s forwards;
+        }
+        @keyframes fadeOutPage {
+            to {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
     </style>
 </head>
 <body>
+
+    <a href="/index.php" class="close-btn" id="closeBtn" title="Cerrar">
+        &times;
+    </a>
 
     <div class="login-container">
         <h2>Iniciar sesión</h2>
@@ -151,6 +187,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a>
         </div>
     </div>
+
+    <script>
+    document.getElementById('closeBtn').addEventListener('click', function(e) {
+        e.preventDefault(); // prevenir navegación inmediata
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+            window.location.href = this.href;
+        }, 180); // esperar a que termine la animación
+    });
+    </script>
 
 </body>
 </html>

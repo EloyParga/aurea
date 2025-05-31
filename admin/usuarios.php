@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo_usuario'] !== 'admin') {
-    header("Location: /aurea/login.php");
+    header("Location: ../login.php");
     exit;
 }
 
@@ -25,7 +25,7 @@ $totalUsuarios = $totalResult->fetch_assoc()['total'];
     <meta charset="UTF-8">
     <title>Gestión de Usuarios - Aurea</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/aurea/assets/css/estilos.css" />
+    <link rel="stylesheet" href="../assets/css/estilos.css" />
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>

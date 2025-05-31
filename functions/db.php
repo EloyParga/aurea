@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
-$dbname = "aurea";
-$user = "root";
-$pass = "";
+$dbname = "u819332154_aurea";
+$user = "u819332154_admindb";
+$pass = "7&TDRj1o";
 
 // Conexión
 $conn = new mysqli($host, $user, $pass, $dbname);
